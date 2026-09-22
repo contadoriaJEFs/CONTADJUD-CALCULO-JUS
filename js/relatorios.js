@@ -830,7 +830,7 @@ function gerarTabelaAtualizacaoRelatorioProfissional() {
         : [];
 
     if (!dados.length) {
-        return '<p class="nota-relatorio">Não há memória de atualização disponível. Calcule os valores de atualização antes de gerar este relatório.</p>';
+        return '<p class="nota-relatorio">Não há memória de atualização disponível. Calcule a Guia 5 antes de gerar este relatório.</p>';
     }
 
     const numeroCompetencia = (comp) => {
@@ -932,7 +932,7 @@ function gerarSecaoAtualizacaoRelatorioProfissional(continuaEmNovaPagina = false
     if (!g5 || !Array.isArray(g5.itens) || !g5.itens.length) {
         return `<section class="secao-relatorio secao-atualizacao-relatorio ${continuaEmNovaPagina ? 'continua-em-pagina' : ''}">
             <h2>Resultado da Atualização</h2>
-            <p class="nota-relatorio">Não há memória de atualização disponível. Calcule os valores de atualização antes de gerar este relatório.</p>
+            <p class="nota-relatorio">Não há memória de atualização disponível. Calcule a Guia 5 antes de gerar este relatório.</p>
         </section>`;
     }
 
@@ -964,7 +964,7 @@ function gerarSecaoAtualizacaoRelatorioProfissional(continuaEmNovaPagina = false
 
         <h3 class="memoria-titulo-relatorio">MEMÓRIA DA ATUALIZAÇÃO</h3>
         ${gerarTabelaAtualizacaoRelatorioProfissional()}
-        <p class="nota-relatorio">Memória da atualização reproduzida a partir dos resultados consolidados do cálculo. O relatório apresenta os resultados já calculados pelo sistema e não reexecuta o motor de atualização.</p>
+        <p class="nota-relatorio">Memória da atualização reproduzida a partir dos resultados consolidados da Guia 5. O relatório apresenta os resultados já calculados pelo sistema e não reexecuta o motor de atualização.</p>
     </section>`;
 }
 
