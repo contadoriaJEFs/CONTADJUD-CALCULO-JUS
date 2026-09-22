@@ -4116,6 +4116,13 @@ body.modal-relatorio-aberto { overflow:hidden; }
     color: #B16447 !important;
   }
 
+  /* No modelo alternativo, os títulos internos das tabelas também usam a
+     identidade terracota. Remove o ciano herdado do modelo anterior. */
+  #relatorioImpressaoPortal.modelo-calculo-jus .memoria-titulo-relatorio {
+    color: #B16447 !important;
+    border-bottom: 1px solid #B16447 !important;
+  }
+
   /* Todas as tabelas do modelo alternativo usam terracota no cabeçalho. */
   #relatorioImpressaoPortal.modelo-calculo-jus table th,
   #relatorioImpressaoPortal.modelo-calculo-jus .requisitorio-tabela-wrap th,
@@ -4192,35 +4199,5 @@ body.modal-relatorio-aberto { overflow:hidden; }
       font-size: 13.5px !important;
       line-height: 1.15 !important;
       white-space: nowrap !important;
-  }
-}
-
-
-/* Guia 8 — Informações sobre os cálculos.
-   Campo editorial isolado: não participa dos motores nem dos dados de cálculo. */
-.relatorio-informacoes-calculos { margin-top:16px; padding:14px; border:1px solid #dbe3ec; border-radius:8px; background:#fff; }
-.relatorio-informacoes-calculos-titulo { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.4px; color:#64748b; margin-bottom:8px; }
-.relatorio-informacoes-calculos-textarea { width:100%; min-height:130px; resize:vertical; box-sizing:border-box; padding:10px 12px; border:1px solid #cbd5e1; border-radius:7px; background:#fff; color:#334155; font:13px/1.55 Arial, Helvetica, sans-serif; outline:none; }
-.relatorio-informacoes-calculos-textarea:focus { border-color:#94a3b8; box-shadow:0 0 0 2px rgba(148,163,184,.14); }
-.relatorio-informacoes-calculos-ajuda { margin-top:6px; font-size:11px; color:#64748b; }
-
-#relatorioImpressaoPortal.modelo-calculo-jus .bloco-informacoes-calculos-relatorio {
-  border:1px solid #d8b9aa;
-  border-left:4px solid #B16447;
-  background:#FAF9F7;
-  padding:12px 14px;
-  color:#34302d;
-  font-size:9pt;
-  line-height:1.55;
-  white-space:normal;
-}
-#relatorioImpressaoPortal.modelo-calculo-jus .secao-informacoes-complementares-relatorio h2 {
-  color:#B16447 !important;
-  border-bottom-color:#B16447 !important;
-}
-@media print {
-  #relatorioImpressaoPortal.modelo-calculo-jus .bloco-informacoes-calculos-relatorio {
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
   }
 }

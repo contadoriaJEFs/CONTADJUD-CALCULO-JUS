@@ -1283,8 +1283,8 @@
             <div class="conteudo-guia" id="guia-relatorios">
                 <div class="relatorios-cabecalho no-print">
                     <div>
-                        <h2 class="text-lg font-bold text-slate-800">📄 Informações sobre os cálculos</h2>
-                        <p class="text-sm text-slate-500 mt-1">Selecione as seções do relatório e, se necessário, registre informações que deverão acompanhar o cálculo.</p>
+                        <h2 class="text-lg font-bold text-slate-800">📄 Relatórios</h2>
+                        <p class="text-sm text-slate-500 mt-1">Selecione as seções que deverão compor o relatório final. A seleção é feita por guia e não corresponde a uma impressão da tela.</p>
                     </div>
                     <div class="flex gap-2">
                         <button type="button" onclick="selecionarTodosRelatorios()" class="relatorio-btn relatorio-btn-secundario">Selecionar todos</button>
@@ -1325,16 +1325,10 @@
                         </label>
                         <label class="relatorio-opcao" data-relatorio-option="relatorios">
                             <input type="checkbox" id="relatorioSelecionarRelatorios" value="relatorios" checked>
-                            <span><strong>8. Informações sobre os cálculos</strong><small>Texto opcional que poderá acompanhar o relatório final</small></span>
+                            <span><strong>8. Relatórios</strong><small>Informações complementares e alterações manuais</small></span>
                         </label>
                     </div>
                     <div id="avisoRelatoriosTipoAcao" class="relatorio-aviso hidden"></div>
-
-                    <div class="relatorio-informacoes-calculos no-print">
-                        <div class="relatorio-informacoes-calculos-titulo">Informações sobre os cálculos</div>
-                        <textarea id="informacoesSobreCalculos" class="relatorio-informacoes-calculos-textarea" rows="6" placeholder="Digite aqui informações que deverão acompanhar o relatório final."></textarea>
-                        <div class="relatorio-informacoes-calculos-ajuda">Campo opcional. Se permanecer vazio, esta seção não será incluída no relatório.</div>
-                    </div>
                 </div>
 
                 <div class="relatorios-acoes no-print">

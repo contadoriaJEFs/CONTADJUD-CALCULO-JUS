@@ -536,6 +536,7 @@ function gerarSecaoEvolucaoRelatorioProfissional() {
                 </tr></thead>
                 <tbody>${linhas}</tbody>
             </table>
+            <p class="nota-relatorio">Memória de cálculo reproduzida a partir dos resultados consolidados da evolução do benefício devido. O relatório apresenta os resultados já calculados pelo sistema e não realiza novo processamento dos valores.</p>
         </section>`;
 }
 
@@ -662,7 +663,7 @@ function gerarSecaoBeneficiosRecebidosRelatorioProfissional(continuaEmNovaPagina
         </div>`;
     });
 
-    html += `</section>`;
+    html += `<p class="nota-relatorio">Memória da evolução do benefício recebido reproduzida a partir dos resultados consolidados do cálculo. O relatório apresenta os resultados já calculados pelo sistema e não realiza novo processamento dos valores.</p></section>`;
     return html;
 }
 
@@ -787,6 +788,7 @@ function gerarSecaoDiferencasRelatorioProfissional(continuaEmNovaPagina = false)
     const totalRecebido = document.getElementById('totalRecebido')?.textContent?.trim() || 'R$ 0,00';
     const diferencaTotal = document.getElementById('diferencaTotal')?.textContent?.trim() || 'R$ 0,00';
     const qtdCompetencias = document.getElementById('qtdCompetencias')?.textContent?.trim() || '0';
+    const qtdEditadas = document.getElementById('qtdEditadas')?.textContent?.trim() || '0';
 
     if (!temLinhas) {
         return `<section class="secao-relatorio secao-diferencas-relatorio ${continuaEmNovaPagina ? 'continua-em-pagina' : ''}">
@@ -815,7 +817,9 @@ function gerarSecaoDiferencasRelatorioProfissional(continuaEmNovaPagina = false)
 
         <div class="rodape-diferencas-relatorio">
             <span>Competências analisadas: ${relatorioEscaparHtml(qtdCompetencias)}</span>
+            <span>Células editadas manualmente: ${relatorioEscaparHtml(qtdEditadas)}</span>
         </div>
+        <p class="nota-relatorio">Demonstrativo das diferenças reproduzido a partir dos resultados consolidados do cálculo. O relatório apresenta os resultados já calculados pelo sistema e não realiza novo processamento dos valores.</p>
     </section>`;
 }
 
@@ -960,6 +964,7 @@ function gerarSecaoAtualizacaoRelatorioProfissional(continuaEmNovaPagina = false
 
         <h3 class="memoria-titulo-relatorio">MEMÓRIA DA ATUALIZAÇÃO</h3>
         ${gerarTabelaAtualizacaoRelatorioProfissional()}
+        <p class="nota-relatorio">Memória da atualização reproduzida a partir dos resultados consolidados do cálculo. O relatório apresenta os resultados já calculados pelo sistema e não reexecuta o motor de atualização.</p>
     </section>`;
 }
 
@@ -1232,14 +1237,19 @@ function gerarSecaoRequisitorioRelatorioProfissional(continuaEmNovaPagina = fals
 }
 
 function gerarSecaoInformacoesComplementaresRelatorioProfissional(continuaEmNovaPagina = false) {
-    const campo = document.getElementById('informacoesSobreCalculos');
-    const texto = campo ? String(campo.value || '').trim() : '';
-    if (!texto) return '';
-
-    const textoHtml = relatorioEscaparHtml(texto).replace(/\r?\n/g, '<br>');
+    const qtdEditadas = relatorioTextoCampo('qtdEditadas', '0');
+    const alteradas = obterCompetenciasModificadasRelatorio();
+    let detalhes = '';
+    if (Array.isArray(alteradas) && alteradas.length) {
+        detalhes = `<div class="tabela-relatorio-complementar-wrap"><table class="tabela-complementar-relatorio"><thead><tr><th>Comp.</th><th>Valor original calculado</th><th>Valor utilizado</th></tr></thead><tbody>${alteradas.map(item => `<tr><td>${relatorioEscaparHtml(item.comp || '-')}</td><td class="num">${relatorioValorMoeda(item.valorOriginal)}</td><td class="num">${relatorioValorMoeda(item.valorEditado)}</td></tr>`).join('')}</tbody></table></div>`;
+    }
     return `<section class="secao-relatorio secao-informacoes-complementares-relatorio ${continuaEmNovaPagina ? 'continua-em-pagina' : ''}">
-        <h2>Informações sobre os cálculos</h2>
-        <div class="bloco-informacoes-calculos-relatorio">${textoHtml}</div>
+        <h2>Informações Complementares</h2>
+        <div class="quadro-resumo quadro-resumo-requisitorio-secundario">
+            <div class="item"><span class="rotulo">Células editadas manualmente</span><span class="valor">${relatorioEscaparHtml(qtdEditadas)}</span></div>
+        </div>
+        ${detalhes || '<p class="nota-relatorio">Não há alterações manuais registradas no demonstrativo das diferenças.</p>'}
+        <p class="nota-relatorio">Informações complementares reproduzidas a partir dos registros disponíveis no sistema. Esta seção é informativa e não altera os resultados dos cálculos.</p>
     </section>`;
 }
 
