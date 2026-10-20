@@ -1157,9 +1157,18 @@ function gerarSecaoRequisitorioRelatorioProfissional(continuaEmNovaPagina = fals
     const precSelic = relatorioTextoCampo('precatorioSelicRequisitorio', 'R$ 0,00');
     const precTotal = relatorioTextoCampo('precatorioTotalRequisitorio', 'R$ 0,00');
     const sucumbencia = relatorioTextoCampo('valorSucumbenciaRequisitorio', 'R$ 0,00');
-    const percentualSuc = relatorioTextoCampo('percentualAplicadoSucumbencia', '0,00%');
-    const criterioSuc = document.getElementById('criterioSucumbencia')?.selectedOptions?.[0]?.textContent?.trim() || '-';
+    const temSucValor = document.getElementById('temSucumbencia')?.value || 'nao';
     const temSuc = document.getElementById('temSucumbencia')?.selectedOptions?.[0]?.textContent?.trim() || '-';
+    // Ajustes exclusivamente de apresentação: não alteram os valores nem o motor do requisitório.
+    const sucumbenciaNaoAplicavel = temSucValor !== 'sim';
+    const percentualSuc = sucumbenciaNaoAplicavel
+        ? 'Não se aplica'
+        : relatorioTextoCampo('percentualAplicadoSucumbencia', '0,00%');
+    const criterioSuc = sucumbenciaNaoAplicavel
+        ? 'Não se aplica'
+        : (document.getElementById('criterioSucumbencia')?.selectedOptions?.[0]?.textContent?.trim() || '-');
+    const limitarAoTeto = document.getElementById('limitarAoTeto')?.value || 'sim';
+    const limiteRelatorio = limitarAoTeto === 'nao' ? 'Não se aplica' : limite;
     const aplicarContrato = document.getElementById('aplicarHonorariosContratuais')?.selectedOptions?.[0]?.textContent?.trim() || '-';
     const tipo = relatorioObterTipoRequisitorio();
     const tipoRequisitorioAtual = document.getElementById('tipoRequisitorio')?.value || 'ambos';
@@ -1207,7 +1216,7 @@ function gerarSecaoRequisitorioRelatorioProfissional(continuaEmNovaPagina = fals
             <div class="item"><span class="rotulo">Tipo de requisitório</span><span class="valor valor-menor">${relatorioEscaparHtml(tipo)}</span></div>
             ${!isPrecatorioExclusivo ? `
             <div class="item"><span class="rotulo">Salário mínimo</span><span class="valor">${relatorioEscaparHtml(salario)}</span></div>
-            <div class="item"><span class="rotulo">Limite de 60 salários mínimos</span><span class="valor">${relatorioEscaparHtml(limite)}</span></div>` : ''}
+            <div class="item"><span class="rotulo">Limite de 60 salários mínimos</span><span class="valor">${relatorioEscaparHtml(limiteRelatorio)}</span></div>` : ''}
         </div>
         <div class="quadro-totais-atualizacao quadro-totais-requisitorio">
             <div class="total"><span>Principal da base</span><strong>${relatorioEscaparHtml(principal)}</strong></div>
