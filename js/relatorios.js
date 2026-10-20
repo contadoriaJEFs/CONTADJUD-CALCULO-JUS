@@ -536,7 +536,6 @@ function gerarSecaoEvolucaoRelatorioProfissional() {
                 </tr></thead>
                 <tbody>${linhas}</tbody>
             </table>
-            <p class="nota-relatorio">Memória de cálculo reproduzida a partir dos resultados consolidados da evolução do benefício devido. O relatório apresenta os resultados já calculados pelo sistema e não realiza novo processamento dos valores.</p>
         </section>`;
 }
 
@@ -662,8 +661,6 @@ function gerarSecaoBeneficiosRecebidosRelatorioProfissional(continuaEmNovaPagina
             ${gerarTabelaMemoriaBeneficioRecebido(resultado.memoria)}
         </div>`;
     });
-
-    html += `<p class="nota-relatorio">Memória da evolução do benefício recebido reproduzida a partir dos resultados consolidados do cálculo. O relatório apresenta os resultados já calculados pelo sistema e não realiza novo processamento dos valores.</p></section>`;
     return html;
 }
 
@@ -766,7 +763,6 @@ function gerarSecaoComposicaoAcoesGeraisRelatorioProfissional(continuaEmNovaPagi
         <div class=\"quadro-totais-diferencas\"><div class=\"total principal\"><span>Total devido</span><strong>${relatorioEscaparHtml(fmt(total))}</strong></div></div>
         ${linhasDesconsideradas > 0 ? `<p class=\"nota-relatorio\"><strong>${linhasDesconsideradas}</strong> competência(s) anterior(es) ao termo inicial foram desconsiderada(s) do resultado, embora permaneçam na composição para conferência.</p>` : ''}
         <div class=\"tabela-relatorio-complementar-wrap tabela-composicao-acoes-gerais-relatorio-wrap\"><table class=\"tabela-composicao-acoes-gerais-relatorio\"><thead><tr>${cabecalhos.map(h => `<th>${relatorioEscaparHtml(h)}</th>`).join('')}</tr></thead><tbody>${corpo}</tbody></table></div>
-        <p class=\"nota-relatorio\">Composição das parcelas reproduzida a partir dos valores informados pelo usuário. Créditos somam e débitos subtraem. O Total Devido é calculado automaticamente por competência.</p>
     </section>`;
 }
 
@@ -819,7 +815,6 @@ function gerarSecaoDiferencasRelatorioProfissional(continuaEmNovaPagina = false)
             <span>Competências analisadas: ${relatorioEscaparHtml(qtdCompetencias)}</span>
             <span>Células editadas manualmente: ${relatorioEscaparHtml(qtdEditadas)}</span>
         </div>
-        <p class="nota-relatorio">Demonstrativo das diferenças reproduzido a partir dos resultados consolidados do cálculo. O relatório apresenta os resultados já calculados pelo sistema e não realiza novo processamento dos valores.</p>
     </section>`;
 }
 
@@ -964,7 +959,6 @@ function gerarSecaoAtualizacaoRelatorioProfissional(continuaEmNovaPagina = false
 
         <h3 class="memoria-titulo-relatorio">MEMÓRIA DA ATUALIZAÇÃO</h3>
         ${gerarTabelaAtualizacaoRelatorioProfissional()}
-        <p class="nota-relatorio">Memória da atualização reproduzida a partir dos resultados consolidados da Guia 5. O relatório apresenta os resultados já calculados pelo sistema e não reexecuta o motor de atualização.</p>
     </section>`;
 }
 
@@ -1135,7 +1129,6 @@ function gerarSecaoRenunciaRelatorioProfissional(continuaEmNovaPagina = false) {
             <div class="total"><span>Após acordo — SELIC</span><strong>${relatorioEscaparHtml(acordoSelic)}</strong></div>
             <div class="total principal"><span>Total após acordo</span><strong>${relatorioEscaparHtml(acordoTotal)}</strong></div>
         </div>` : ''}
-        <p class="nota-relatorio">Dados da renúncia reproduzidos a partir dos resultados consolidados pelo sistema. O relatório não reexecuta o cálculo da formação da demanda nem da atualização do valor renunciado.</p>
     </section>`;
 }
 
@@ -1241,7 +1234,6 @@ function gerarSecaoRequisitorioRelatorioProfissional(continuaEmNovaPagina = fals
         </div>
         ${tabelaRpv}
         ${tabelaPrec}
-        <p class="nota-relatorio">Dados do requisitório reproduzidos a partir dos resultados consolidados pelo sistema. O relatório não reexecuta o cálculo do requisitório nem dos honorários.</p>
     </section>`;
 }
 
@@ -1258,7 +1250,6 @@ function gerarSecaoInformacoesComplementaresRelatorioProfissional(continuaEmNova
             <div class="item"><span class="rotulo">Células editadas manualmente</span><span class="valor">${relatorioEscaparHtml(qtdEditadas)}</span></div>
         </div>
         ${detalhes || '<p class="nota-relatorio">Não há alterações manuais registradas no demonstrativo das diferenças.</p>'}
-        <p class="nota-relatorio">Informações complementares reproduzidas a partir dos registros disponíveis no sistema. Esta seção é informativa e não altera os resultados dos cálculos.</p>
     </section>`;
 }
 
