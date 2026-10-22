@@ -428,6 +428,9 @@ function montarCabecalhoRelatorioProfissional(modelo = 'padrao') {
     const autor = relatorioCampo('autor', 'Não informado');
     const reu = relatorioCampo('reu', 'Não informado');
     const dataCalculo = relatorioCampo('dataCalculo', relatorioCampo('dataAtualizacao', 'Não informado'));
+    const subtituloRelatorio = (document.getElementById('tipoAcao')?.value || 'previdenciaria') === 'previdenciaria'
+        ? 'Evolução Previdenciária — RGPS / INSS'
+        : 'Demonstrativo de Cálculo Judicial';
 
     if (modelo === 'calculo-jus') {
         return `
@@ -435,7 +438,7 @@ function montarCabecalhoRelatorioProfissional(modelo = 'padrao') {
                 <div class="marca-titulo-calculo-jus" aria-hidden="true"></div>
                 <div class="titulo-area-relatorio">
                     <div class="titulo-documento">RELATÓRIO DE CÁLCULO JUDICIAL</div>
-                    <div class="subtitulo-documento">Evolução Previdenciária — RGPS / INSS</div>
+                    <div class="subtitulo-documento">${relatorioEscaparHtml(subtituloRelatorio)}</div>
                     <div class="data-emissao">Emissão: ${relatorioEscaparHtml(dataCalculo)}</div>
                 </div>
             </div>
@@ -454,7 +457,7 @@ function montarCabecalhoRelatorioProfissional(modelo = 'padrao') {
             </div>
             <div class="titulo-area-relatorio">
                 <div class="titulo-documento">RELATÓRIO DE CÁLCULO JUDICIAL</div>
-                <div class="subtitulo-documento">Evolução Previdenciária — RGPS / INSS</div>
+                <div class="subtitulo-documento">${relatorioEscaparHtml(subtituloRelatorio)}</div>
                 <div class="data-emissao">Emissão: ${relatorioEscaparHtml(dataCalculo)}</div>
             </div>
         </div>
